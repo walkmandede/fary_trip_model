@@ -1,11 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'trip_enums.dart';
 
-enum SavePlaceType {
-  home,
-  work,
-  other
-}
+enum SavePlaceType { home, work, other }
 
 class FaryTripMeta {
   DateTime startDateTime;
@@ -16,6 +12,7 @@ class FaryTripMeta {
   PickUpState pickUpState;
   TripPayment payment;
   RentType rentType;
+  RentPayType rentPayType;
   int platformFees;
   double serviceFees;
 
@@ -23,6 +20,7 @@ class FaryTripMeta {
       {required this.startDateTime,
       required this.endDateTime,
       required this.rentType,
+      required this.rentPayType,
       required this.payment,
       required this.pickUpState,
       required this.tripState,

@@ -13,3 +13,7 @@ enum PlaceType { recent, search, savePlace }
 enum PromotionType { mmk, percentage }
 
 enum SosUserType { user, driver }
+
+enum SavePlaceType { Home, Work, Other }
+
+enum RentPayType { account, credit }

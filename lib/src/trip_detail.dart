@@ -1,4 +1,3 @@
-
 import 'package:fary_trip_model/src/trip_enums.dart';
 import 'package:fary_trip_model/src/trip_functions.dart';
 import 'package:fary_trip_model/src/trip_sub_models.dart';
@@ -75,7 +74,8 @@ class FaryTripDetail {
                         image:
                             tripMeta['payment']['info']['image'].toString())),
             platformFees: int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
-            serviceFees: double.tryParse(tripMeta['serviceFees'].toString()) ?? 0),
+            serviceFees: double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
+            rentPayType: TripFunctions.enumParser(rawString: tripMeta['rentPayType'], values: RentPayType.values)),
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),
