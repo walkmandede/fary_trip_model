@@ -1,15 +1,9 @@
 import 'dart:math';
+import 'package:fary_trip_model/src/flexible_polyline.dart';
 import 'package:tuple/tuple.dart';
+import 'package:tuple/tuple.dart';
+import 'latlngz.dart';
 
-import 'flexible_polyline.dart';
-
-///
-/// Stateful instance for encoding and decoding on a sequence of Coordinates
-/// part of a request.
-/// Instance should be specific to type of coordinates (e.g. Lat, Lng)
-/// so that specific type delta is computed for encoding.
-/// Lat0 Lng0 3rd0 (Lat1-Lat0) (Lng1-Lng0) (3rdDim1-3rdDim0)
-///
 class Converter {
   final int precision;
   late int multiplier;

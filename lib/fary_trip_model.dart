@@ -1,7 +1,10 @@
 library fary_trip_model;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/converter.dart';
+export 'src/flexible_polyline.dart';
+export 'src/json_convert.dart';
+export 'src/latlngz.dart';
+export 'src/trip_detail.dart';
+export 'src/trip_enums.dart';
+export 'src/trip_functions.dart';
+export 'src/trip_sub_models.dart';
