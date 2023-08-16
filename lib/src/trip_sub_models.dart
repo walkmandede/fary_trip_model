@@ -1,8 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'trip_enums.dart';
 
-enum SavePlaceType { home, work, other }
-
 class FaryTripMeta {
   DateTime startDateTime;
   DateTime endDateTime;

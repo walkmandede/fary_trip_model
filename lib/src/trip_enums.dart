@@ -14,6 +14,6 @@ enum PromotionType { mmk, percentage }
 
 enum SosUserType { user, driver }
 
-enum SavePlaceType { Home, Work, Other }
+enum SavePlaceType { home, work, other }
 
 enum RentPayType { account, credit }
