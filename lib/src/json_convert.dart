@@ -4,14 +4,28 @@ import 'package:fary_trip_model/src/trip_sub_models.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FaryConvert {
-  static FaryPlace faryPlaceFromJson(Map data) {
+  static FaryPlace faryPlaceFromJsonWithLocation(Map data) {
     // print(object)
-    var temp;
-    try {
-      temp = data['location'].toString().split(',');
-    } catch (e) {
-      temp = data['position'].toString().split(',');
-    }
+
+    var temp = data['location'].toString().split(',');
+
+    print(temp);
+    return FaryPlace(
+        title: data['title'],
+        location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
+            double.tryParse(temp.last.toString()) ?? 0.0),
+        address: data['address'],
+        city: data['city'],
+        countryName: data['countryName'],
+        district: data['district'],
+        type: PlaceType.search);
+  }
+
+  static FaryPlace faryPlaceFromJsonWithPosition(Map data) {
+    // print(object)
+
+    var temp = data['position'].toString().split(',');
+
     print(temp);
     return FaryPlace(
         title: data['title'],
