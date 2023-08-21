@@ -132,14 +132,16 @@ class FaryRoute {
 class FaryPromotion {
   String id;
   String code;
-  PromotionType type;
+  DiscountType discountType;
+  PromotionType promotionType;
   int value;
 
   FaryPromotion(
       {required this.id,
       required this.value,
       required this.code,
-      required this.type});
+      required this.discountType,
+      required this.promotionType});
 }
 
 class FaryPrice {

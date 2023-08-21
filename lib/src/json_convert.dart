@@ -1,4 +1,3 @@
-
 import 'package:fary_trip_model/src/trip_enums.dart';
 import 'package:fary_trip_model/src/trip_functions.dart';
 import 'package:fary_trip_model/src/trip_sub_models.dart';
@@ -7,7 +6,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class FaryConvert {
   static FaryPlace faryPlaceFromJson(Map data) {
     // print(object)
-    var temp = data['position'].toString().split(',');
+    var temp;
+    try {
+      temp = data['location'].toString().split(',');
+    } catch (e) {
+      temp = data['position'].toString().split(',');
+    }
     print(temp);
     return FaryPlace(
         title: data['title'],
@@ -17,8 +21,7 @@ class FaryConvert {
         city: data['city'],
         countryName: data['countryName'],
         district: data['district'],
-        type: PlaceType.search
-    );
+        type: PlaceType.search);
   }
 
   static Map faryPlaceToMap(FaryPlace faryPlace) {
@@ -40,7 +43,9 @@ class FaryConvert {
             id: data['id'],
             value: data['value'],
             code: data['code'],
-            type: TripFunctions.enumParser(
+            discountType: TripFunctions.enumParser(
+                rawString: data['discountType'], values: DiscountType.values),
+            promotionType: TripFunctions.enumParser(
                 rawString: data['type'], values: PromotionType.values));
   }
 
@@ -50,7 +55,8 @@ class FaryConvert {
         : {
             "id": faryPromotion.id,
             "code": faryPromotion.code,
-            "type": faryPromotion.type.name,
+            "discountType": faryPromotion.discountType.name,
+            "type": faryPromotion.promotionType.name,
             "value": faryPromotion.value
           };
   }

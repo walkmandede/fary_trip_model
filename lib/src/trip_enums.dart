@@ -10,7 +10,9 @@ enum RentType { individual, cooperate }
 
 enum PlaceType { recent, search, savePlace }
 
-enum PromotionType { mmk, percentage }
+enum DiscountType { mmk, percentage }
+
+enum PromotionType { package, discount }
 
 enum SosUserType { user, driver }
 

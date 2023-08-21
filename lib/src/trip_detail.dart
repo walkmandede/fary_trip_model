@@ -114,7 +114,7 @@ class FaryTripDetail {
           city: to['city'].toString(),
           district: to['district'].toString(),
         ),
-        promotion: promotion == null ? null : FaryPromotion(id: promotion['id'].toString(), type: TripFunctions.enumParser(rawString: promotion['type'], values: PromotionType.values), code: promotion['code'].toString(), value: int.tryParse(promotion['value'].toString()) ?? 0),
+        promotion: promotion == null ? null : FaryPromotion(id: promotion['id'].toString(), discountType: TripFunctions.enumParser(rawString: promotion['discountType'], values: DiscountType.values), code: promotion['code'].toString(), value: int.tryParse(promotion['value'].toString()) ?? 0, promotionType: TripFunctions.enumParser(rawString: promotion['type'], values: PromotionType.values)),
         price: FaryPrice(grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
         sosMeta: sosRawList.map((e) {
           return FarySos(
@@ -255,7 +255,7 @@ class FaryTripDetail {
           : {
               "id": promotion!.id,
               "code": promotion!.code,
-              "type": promotion!.type.name,
+              "type": promotion!.discountType.name,
               "value": promotion!.value
             },
       "price": {"grossPrice": price.grossPrice},
