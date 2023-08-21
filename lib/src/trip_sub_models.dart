@@ -6,7 +6,7 @@ class FaryTripMeta {
   DateTime endDateTime;
   String userSocketId;
   String driverSocketId;
-  TripState tripState;
+  TripState? tripState;
   PickUpState pickUpState;
   TripPayment payment;
   RentType rentType;

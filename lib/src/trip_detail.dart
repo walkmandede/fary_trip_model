@@ -55,8 +55,10 @@ class FaryTripDetail {
                     DateTime(0),
             pickUpState: TripFunctions.enumParser(
                 rawString: tripMeta['pickUpState'], values: PickUpState.values),
-            tripState: TripFunctions.enumParser(
-                rawString: tripMeta['tripState'], values: TripState.values),
+            tripState: tripMeta['tripState'] == null
+                ? null
+                : TripFunctions.enumParser(
+                    rawString: tripMeta['tripState'], values: TripState.values),
             rentType: TripFunctions.enumParser(
                 rawString: tripMeta['rentType'], values: RentType.values),
             payment: TripPayment(
@@ -71,8 +73,7 @@ class FaryTripDetail {
                                 ['paymentMethod']
                             .toString(),
                         phone: tripMeta['payment']['info']['phone'].toString(),
-                        image:
-                            tripMeta['payment']['info']['image'].toString())),
+                        image: tripMeta['payment']['info']['image'].toString())),
             platformFees: int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
             serviceFees: double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
             rentPayType: TripFunctions.enumParser(rawString: tripMeta['rentPayType'], values: RentPayType.values)),
@@ -173,7 +174,7 @@ class FaryTripDetail {
         "userSocketId": tripMeta.userSocketId,
         "driverSocketId": tripMeta.driverSocketId,
         "pickUpState": tripMeta.pickUpState.name,
-        "tripState": tripMeta.tripState.name,
+        "tripState": tripMeta.tripState!.name,
         "payment": {
           "type": tripMeta.payment.type.name,
           "info": tripMeta.payment.info == null
