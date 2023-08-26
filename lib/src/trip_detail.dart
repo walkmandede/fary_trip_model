@@ -61,22 +61,39 @@ class FaryTripDetail {
                     rawString: tripMeta['tripState'], values: TripState.values),
             rentType: TripFunctions.enumParser(
                 rawString: tripMeta['rentType'], values: RentType.values),
-            payment: TripPayment(
-                type: TripFunctions.enumParser(
-                    rawString: tripMeta['payment']['type'],
-                    values: PaymentType.values),
-                info: tripMeta['payment']['info'] == null
-                    ? null
-                    : PaymentInfo(
-                        id: tripMeta['payment']['info']['id'].toString(),
-                        paymentMethod: tripMeta['payment']['info']
-                                ['paymentMethod']
-                            .toString(),
-                        phone: tripMeta['payment']['info']['phone'].toString(),
-                        image: tripMeta['payment']['info']['image'].toString())),
-            platformFees: int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
-            serviceFees: double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
-            rentPayType: TripFunctions.enumParser(rawString: tripMeta['rentPayType'], values: RentPayType.values)),
+            payment: tripMeta['payment'] == null
+                ? null
+                : TripPayment(
+                    type: TripFunctions.enumParser(
+                        rawString: tripMeta['payment']['type'],
+                        values: PaymentType.values),
+                    info: tripMeta['payment']['info'] == null
+                        ? null
+                        : PaymentInfo(
+                            id: tripMeta['payment']['info']['id'].toString(),
+                            paymentMethod: tripMeta['payment']['info']
+                                    ['paymentMethod']
+                                .toString(),
+                            phone:
+                                tripMeta['payment']['info']['phone'].toString(),
+                            image: tripMeta['payment']['info']['image']
+                                .toString()),
+                  ),
+            clientInfo: tripMeta['clientInfo'] == null
+                ? null
+                : ClientInfo(
+                    companyName: tripMeta['clientInfo']['name'].toString(),
+                    image: tripMeta['clientInfo']['image'].toString(),
+                  ),
+            platformFees:
+                int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
+            serviceFees:
+                double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
+            rentPayType: tripMeta['rentPayType'] == null
+                ? null
+                : TripFunctions.enumParser(
+                    rawString: tripMeta['rentPayType'],
+                    values: RentPayType.values)),
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),
@@ -115,8 +132,20 @@ class FaryTripDetail {
           city: to['city'].toString(),
           district: to['district'].toString(),
         ),
-        promotion: promotion == null ? null : FaryPromotion(id: promotion['id'].toString(), discountType: TripFunctions.enumParser(rawString: promotion['discountType'], values: DiscountType.values), code: promotion['code'].toString(), value: int.tryParse(promotion['value'].toString()) ?? 0, promotionType: TripFunctions.enumParser(rawString: promotion['type'], values: PromotionType.values)),
-        price: FaryPrice(grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
+        promotion: promotion == null
+            ? null
+            : FaryPromotion(
+                id: promotion['id'].toString(),
+                discountType: TripFunctions.enumParser(
+                    rawString: promotion['discountType'],
+                    values: DiscountType.values),
+                code: promotion['code'].toString(),
+                value: int.tryParse(promotion['value'].toString()) ?? 0,
+                promotionType: TripFunctions.enumParser(
+                    rawString: promotion['type'],
+                    values: PromotionType.values)),
+        price: FaryPrice(
+            grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
         sosMeta: sosRawList.map((e) {
           return FarySos(
               type: TripFunctions.enumParser(
@@ -175,18 +204,28 @@ class FaryTripDetail {
         "driverSocketId": tripMeta.driverSocketId,
         "pickUpState": tripMeta.pickUpState.name,
         "tripState": tripMeta.tripState!.name,
-        "payment": {
-          "type": tripMeta.payment.type.name,
-          "info": tripMeta.payment.info == null
-              ? null
-              : {
-                  "id": tripMeta.payment.info!.id,
-                  "paymentMethod": tripMeta.payment.info!.paymentMethod,
-                  "phone": tripMeta.payment.info!.phone,
-                  "image": tripMeta.payment.info!.image
-                }
-        },
-        "rentType": tripMeta.rentType.name
+        "payment": tripMeta.rentType == RentType.cooperate
+            ? null
+            : {
+                "type": tripMeta.payment!.type.name,
+                "info": tripMeta.payment!.info == null
+                    ? null
+                    : {
+                        "id": tripMeta.payment!.info!.id,
+                        "paymentMethod": tripMeta.payment!.info!.paymentMethod,
+                        "phone": tripMeta.payment!.info!.phone,
+                        "image": tripMeta.payment!.info!.image
+                      }
+              },
+        "clientInfo": tripMeta.rentType == RentType.individual
+            ? null
+            : {
+                "name": tripMeta.clientInfo!.companyName,
+                "image": tripMeta.clientInfo!.companyName
+              },
+        "rentType": tripMeta.rentType.name,
+        "rentPayType":
+            tripMeta.rentPayType == null ? null : tripMeta.rentPayType!.name
       },
       "user": {
         "id": user.id,

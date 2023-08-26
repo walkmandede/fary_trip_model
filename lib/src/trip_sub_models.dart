@@ -8,9 +8,10 @@ class FaryTripMeta {
   String driverSocketId;
   TripState? tripState;
   PickUpState pickUpState;
-  TripPayment payment;
+  TripPayment? payment;
   RentType rentType;
-  RentPayType rentPayType;
+  RentPayType? rentPayType;
+  ClientInfo? clientInfo;
   int platformFees;
   double serviceFees;
 
@@ -20,12 +21,20 @@ class FaryTripMeta {
       required this.rentType,
       required this.rentPayType,
       required this.payment,
+      required this.clientInfo,
       required this.pickUpState,
       required this.tripState,
       required this.driverSocketId,
       required this.userSocketId,
       required this.platformFees,
       required this.serviceFees});
+}
+
+class ClientInfo {
+  String companyName;
+  String image;
+
+  ClientInfo({required this.companyName, required this.image});
 }
 
 class TripPayment {
