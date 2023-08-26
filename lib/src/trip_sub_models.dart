@@ -158,11 +158,3 @@ class FaryPrice {
 
   FaryPrice({required this.grossPrice});
 }
-
-class FarySos {
-  SosUserType type;
-  String reason;
-  DateTime dateTime;
-
-  FarySos({required this.type, required this.reason, required this.dateTime});
-}

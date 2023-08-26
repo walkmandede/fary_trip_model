@@ -14,7 +14,8 @@ class FaryTripDetail {
   FaryLocationMeta locationMeta;
   FaryPromotion? promotion;
   FaryPrice price;
-  List<FarySos> sosMeta;
+  bool xDriverSos;
+  bool xUserSos;
 
   FaryTripDetail(
       {required this.id,
@@ -27,7 +28,8 @@ class FaryTripDetail {
       required this.locationMeta,
       this.promotion,
       required this.price,
-      required this.sosMeta});
+      required this.xDriverSos,
+      required this.xUserSos});
 
   factory FaryTripDetail.fromTripJson(
       {required Map<dynamic, dynamic> tripDetail}) {
@@ -40,7 +42,7 @@ class FaryTripDetail {
     Map locationMeta = tripDetail['locationMeta'];
     Map? promotion = tripDetail['promotion'];
     Map price = tripDetail['price'];
-    Iterable sosRawList = tripDetail['sosMeta'] ?? [];
+    // Iterable sosRawList = tripDetail['sosMeta'] ?? [];
 
     return FaryTripDetail(
         id: tripDetail['id'].toString(),
@@ -146,14 +148,6 @@ class FaryTripDetail {
                     values: PromotionType.values)),
         price: FaryPrice(
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
-        sosMeta: sosRawList.map((e) {
-          return FarySos(
-              type: TripFunctions.enumParser(
-                  rawString: e['type'], values: SosUserType.values),
-              reason: e['reason'].toString(),
-              dateTime:
-                  DateTime.tryParse(e['dateTime'].toString()) ?? DateTime(0));
-        }).toList(),
         locationMeta: FaryLocationMeta(
           routeHistory: TripFunctions.decodeRoute(
               encodedString: locationMeta['routeHistory']),
@@ -191,7 +185,9 @@ class FaryTripDetail {
               heading: double.tryParse(
                       locationMeta['userPosition']['heading'].toString()) ??
                   0),
-        ));
+        ),
+        xDriverSos: tripDetail['isDriverSOS'],
+        xUserSos: tripDetail['isUserSOS']);
   }
 
   Map<String, dynamic> toMap() {
@@ -299,13 +295,8 @@ class FaryTripDetail {
               "value": promotion!.value
             },
       "price": {"grossPrice": price.grossPrice},
-      "sosMeta": sosMeta.map((e) {
-        return {
-          "type": e.type.name,
-          "reason": e.reason,
-          "dateTime": e.dateTime.toString()
-        };
-      }).toList()
+      'isUserSOS': xUserSos,
+      'isDriverSOS': xDriverSos
     };
   }
 }
