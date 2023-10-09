@@ -13,6 +13,7 @@ class FaryTripMeta {
   RentPayType? rentPayType;
   ClientInfo? clientInfo;
   int platformFees;
+  int commercialTax;
   double serviceFees;
 
   FaryTripMeta(
@@ -27,6 +28,7 @@ class FaryTripMeta {
       required this.driverSocketId,
       required this.userSocketId,
       required this.platformFees,
+      required this.commercialTax,
       required this.serviceFees});
 }
 

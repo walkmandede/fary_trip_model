@@ -95,7 +95,8 @@ class FaryTripDetail {
                 ? null
                 : TripFunctions.enumParser(
                     rawString: tripMeta['rentPayType'],
-                    values: RentPayType.values)),
+                    values: RentPayType.values),
+            commercialTax: tripMeta['commercialTax']),
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),
@@ -213,6 +214,7 @@ class FaryTripDetail {
                         "image": tripMeta.payment!.info!.image
                       }
               },
+        "commercialTax": tripMeta.commercialTax,
         "clientInfo": tripMeta.rentType == RentType.individual
             ? null
             : {
