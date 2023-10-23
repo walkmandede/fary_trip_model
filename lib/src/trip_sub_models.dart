@@ -1,4 +1,5 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';
+
 import 'trip_enums.dart';
 
 class FaryTripMeta {
