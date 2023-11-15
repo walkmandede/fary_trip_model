@@ -47,56 +47,52 @@ class FaryTripDetail {
     return FaryTripDetail(
         id: tripDetail['id'].toString(),
         tripMeta: FaryTripMeta(
-            userSocketId: '',
-            driverSocketId: '',
-            startDateTime:
-                DateTime.tryParse(tripMeta['startDateTime'].toString()) ??
-                    DateTime(0),
-            endDateTime:
-                DateTime.tryParse(tripMeta['endDateTime'].toString()) ??
-                    DateTime(0),
-            pickUpState: TripFunctions.enumParser(
-                rawString: tripMeta['pickUpState'], values: PickUpState.values),
-            tripState: tripMeta['tripState'] == null
-                ? null
-                : TripFunctions.enumParser(
-                    rawString: tripMeta['tripState'], values: TripState.values),
-            rentType: TripFunctions.enumParser(
-                rawString: tripMeta['rentType'], values: RentType.values),
-            payment: tripMeta['payment'] == null
-                ? null
-                : TripPayment(
-                    type: TripFunctions.enumParser(
-                        rawString: tripMeta['payment']['type'],
-                        values: PaymentType.values),
-                    info: tripMeta['payment']['info'] == null
-                        ? null
-                        : PaymentInfo(
-                            id: tripMeta['payment']['info']['id'].toString(),
-                            paymentMethod: tripMeta['payment']['info']
-                                    ['paymentMethod']
-                                .toString(),
-                            phone:
-                                tripMeta['payment']['info']['phone'].toString(),
-                            image: tripMeta['payment']['info']['image']
-                                .toString()),
-                  ),
-            clientInfo: tripMeta['clientInfo'] == null
-                ? null
-                : ClientInfo(
-                    companyName: tripMeta['clientInfo']['name'].toString(),
-                    image: tripMeta['clientInfo']['image'].toString(),
-                  ),
-            platformFees:
-                int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
-            serviceFees:
-                double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
-            rentPayType: tripMeta['rentPayType'] == null
-                ? null
-                : TripFunctions.enumParser(
-                    rawString: tripMeta['rentPayType'],
-                    values: RentPayType.values),
-            commercialTax: tripMeta['commercialTax']),
+          userSocketId: '',
+          driverSocketId: '',
+          startDateTime:
+              DateTime.tryParse(tripMeta['startDateTime'].toString()) ??
+                  DateTime(0),
+          endDateTime: DateTime.tryParse(tripMeta['endDateTime'].toString()) ??
+              DateTime(0),
+          pickUpState: TripFunctions.enumParser(
+              rawString: tripMeta['pickUpState'], values: PickUpState.values),
+          tripState: tripMeta['tripState'] == null
+              ? null
+              : TripFunctions.enumParser(
+                  rawString: tripMeta['tripState'], values: TripState.values),
+          rentType: TripFunctions.enumParser(
+              rawString: tripMeta['rentType'], values: RentType.values),
+          payment: tripMeta['payment'] == null
+              ? null
+              : TripPayment(
+                  type: TripFunctions.enumParser(
+                      rawString: tripMeta['payment']['type'],
+                      values: PaymentType.values),
+                  info: tripMeta['payment']['info'] == null
+                      ? null
+                      : PaymentInfo(
+                          id: tripMeta['payment']['info']['id'].toString(),
+                          paymentMethod: tripMeta['payment']['info']
+                                  ['paymentMethod']
+                              .toString(),
+                          phone:
+                              tripMeta['payment']['info']['phone'].toString(),
+                          image:
+                              tripMeta['payment']['info']['image'].toString()),
+                ),
+          companyName: tripMeta['companyName'],
+          companyImage: tripMeta['companyImage'],
+          industryTeam: tripMeta['industryTeam'],
+          xPackage: tripMeta['isPackage'],
+          platformFees: int.tryParse(tripMeta['platformFees'].toString()) ?? 0,
+          serviceFees: double.tryParse(tripMeta['serviceFees'].toString()) ?? 0,
+          commercialTax: tripMeta['commercialTax'],
+          rentPayType: tripMeta['rentPayType'] == null
+              ? null
+              : TripFunctions.enumParser(
+                  rawString: tripMeta['rentPayType'],
+                  values: RentPayType.values),
+        ),
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),
@@ -215,12 +211,6 @@ class FaryTripDetail {
                       }
               },
         "commercialTax": tripMeta.commercialTax,
-        "clientInfo": tripMeta.rentType == RentType.individual
-            ? null
-            : {
-                "name": tripMeta.clientInfo!.companyName,
-                "image": tripMeta.clientInfo!.companyName
-              },
         "rentType": tripMeta.rentType.name,
         "rentPayType":
             tripMeta.rentPayType == null ? null : tripMeta.rentPayType!.name

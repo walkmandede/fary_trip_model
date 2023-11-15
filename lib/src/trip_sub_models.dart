@@ -12,10 +12,13 @@ class FaryTripMeta {
   TripPayment? payment;
   RentType rentType;
   RentPayType? rentPayType;
-  ClientInfo? clientInfo;
   int platformFees;
   int commercialTax;
   double serviceFees;
+  String? companyName;
+  String? companyImage;
+  String? industryTeam;
+  bool? xPackage;
 
   FaryTripMeta(
       {required this.startDateTime,
@@ -23,21 +26,17 @@ class FaryTripMeta {
       required this.rentType,
       required this.rentPayType,
       required this.payment,
-      required this.clientInfo,
       required this.pickUpState,
       required this.tripState,
       required this.driverSocketId,
       required this.userSocketId,
       required this.platformFees,
       required this.commercialTax,
-      required this.serviceFees});
-}
-
-class ClientInfo {
-  String companyName;
-  String image;
-
-  ClientInfo({required this.companyName, required this.image});
+      required this.serviceFees,
+      this.companyName,
+      this.companyImage,
+      this.industryTeam,
+      this.xPackage});
 }
 
 class TripPayment {
