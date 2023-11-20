@@ -5,14 +5,25 @@ import 'package:latlong2/latlong.dart';
 
 class FaryConvert {
   static FaryPlace faryPlaceFromJsonWithPosition(
-      {required Map data,
-      PlaceType placeType = PlaceType.search,
-      SavePlaceType savePlaceType = SavePlaceType.other}) {
+      {required Map data, PlaceType placeType = PlaceType.search}) {
     // print(object)
 
     var temp = data['position'].toString().split(',');
 
-    print(temp);
+    SavePlaceType savePlaceType = SavePlaceType.other;
+    if (placeType == PlaceType.savePlace) {
+      switch (data['type'].toString().toUpperCase()) {
+        case 'HOME':
+          savePlaceType = SavePlaceType.home;
+          break;
+        case 'WORK':
+          savePlaceType = SavePlaceType.work;
+          break;
+        case 'OTHER':
+          savePlaceType = SavePlaceType.other;
+          break;
+      }
+    }
     return FaryPlace(
         title: data['title'],
         location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
