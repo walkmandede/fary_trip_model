@@ -110,14 +110,18 @@ class FaryPlace {
       this.type,
       this.savePlaceType});
 
-  factory FaryPlace.dafaultValue() {
+  factory FaryPlace.dafaultValue(
+      {PlaceType placeType = PlaceType.search,
+      SavePlaceType savePlaceType = SavePlaceType.other}) {
     return FaryPlace(
         title: '',
         location: const LatLng(0, 0),
         address: '',
         city: '',
         countryName: '',
-        district: '');
+        district: '',
+        type: placeType,
+        savePlaceType: savePlaceType);
   }
 }
 
