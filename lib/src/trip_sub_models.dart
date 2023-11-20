@@ -44,6 +44,10 @@ class TripPayment {
   PaymentInfo? info;
 
   TripPayment({required this.type, this.info});
+
+  factory TripPayment.defaultValue() {
+    return TripPayment(type: PaymentType.cash);
+  }
 }
 
 class PaymentInfo {
@@ -105,6 +109,16 @@ class FaryPlace {
       required this.district,
       this.type,
       this.savePlaceType});
+
+  factory FaryPlace.dafaultValue() {
+    return FaryPlace(
+        title: '',
+        location: const LatLng(0, 0),
+        address: '',
+        city: '',
+        countryName: '',
+        district: '');
+  }
 }
 
 class FaryPosition {
@@ -153,6 +167,15 @@ class FaryPromotion {
       required this.code,
       required this.discountType,
       required this.promotionType});
+
+  factory FaryPromotion.defaultValue() {
+    return FaryPromotion(
+        id: '',
+        value: 0,
+        code: '',
+        discountType: DiscountType.mmk,
+        promotionType: PromotionType.discount);
+  }
 }
 
 class FaryPrice {

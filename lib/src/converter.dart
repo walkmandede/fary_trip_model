@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'package:fary_trip_model/src/flexible_polyline.dart';
 import 'package:tuple/tuple.dart';
-import 'package:tuple/tuple.dart';
-import 'latlngz.dart';
 
 class Converter {
   final int precision;
