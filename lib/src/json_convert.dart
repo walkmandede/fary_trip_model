@@ -4,24 +4,10 @@ import 'package:fary_trip_model/src/trip_sub_models.dart';
 import 'package:latlong2/latlong.dart';
 
 class FaryConvert {
-  static FaryPlace faryPlaceFromJsonWithLocation(Map data) {
-    // print(object)
-
-    var temp = data['location'].toString().split(',');
-
-    print(temp);
-    return FaryPlace(
-        title: data['title'],
-        location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
-            double.tryParse(temp.last.toString()) ?? 0.0),
-        address: data['address'],
-        city: data['city'],
-        countryName: data['countryName'],
-        district: data['district'],
-        type: PlaceType.search);
-  }
-
-  static FaryPlace faryPlaceFromJsonWithPosition(Map data) {
+  static FaryPlace faryPlaceFromJsonWithPosition(
+      {required Map data,
+      PlaceType placeType = PlaceType.search,
+      SavePlaceType savePlaceType = SavePlaceType.other}) {
     // print(object)
 
     var temp = data['position'].toString().split(',');
@@ -35,7 +21,8 @@ class FaryConvert {
         city: data['city'],
         countryName: data['countryName'],
         district: data['district'],
-        type: PlaceType.search);
+        type: placeType,
+        savePlaceType: placeType != PlaceType.savePlace ? null : savePlaceType);
   }
 
   static Map faryPlaceToMap(FaryPlace faryPlace) {
