@@ -151,11 +151,15 @@ class FaryRoute {
   List<LatLng> route;
   double distanceInKm;
   int durationInSecond;
+  double? pickUpTime;
+  double? pickupRange;
 
   FaryRoute(
       {this.route = const [],
       this.distanceInKm = 0,
-      this.durationInSecond = 0});
+      this.durationInSecond = 0,
+      this.pickUpTime,
+      this.pickupRange});
 }
 
 class FaryPromotion {
