@@ -98,30 +98,27 @@ class FaryPlace {
   String city;
   String district;
   PlaceType? type;
-  SavePlaceType? savePlaceType;
 
-  FaryPlace(
-      {required this.title,
-      required this.location,
-      required this.address,
-      required this.city,
-      required this.countryName,
-      required this.district,
-      this.type,
-      this.savePlaceType});
+  FaryPlace({
+    required this.title,
+    required this.location,
+    required this.address,
+    required this.city,
+    required this.countryName,
+    required this.district,
+    this.type,
+  });
 
-  factory FaryPlace.dafaultValue(
-      {PlaceType placeType = PlaceType.search,
-      SavePlaceType savePlaceType = SavePlaceType.other}) {
+  factory FaryPlace.dafaultValue({PlaceType placeType = PlaceType.search}) {
     return FaryPlace(
-        title: '',
-        location: const LatLng(0, 0),
-        address: '',
-        city: '',
-        countryName: '',
-        district: '',
-        type: placeType,
-        savePlaceType: savePlaceType);
+      title: '',
+      location: const LatLng(0, 0),
+      address: '',
+      city: '',
+      countryName: '',
+      district: '',
+      type: placeType,
+    );
   }
 }
 

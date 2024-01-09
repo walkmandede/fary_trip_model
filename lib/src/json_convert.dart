@@ -10,30 +10,16 @@ class FaryConvert {
 
     var temp = data['position'].toString().split(',');
 
-    SavePlaceType savePlaceType = SavePlaceType.other;
-    if (placeType == PlaceType.savePlace) {
-      switch (data['type'].toString().toUpperCase()) {
-        case 'HOME':
-          savePlaceType = SavePlaceType.home;
-          break;
-        case 'WORK':
-          savePlaceType = SavePlaceType.work;
-          break;
-        case 'OTHER':
-          savePlaceType = SavePlaceType.other;
-          break;
-      }
-    }
     return FaryPlace(
-        title: data['title'],
-        location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
-            double.tryParse(temp.last.toString()) ?? 0.0),
-        address: data['address'],
-        city: data['city'],
-        countryName: data['countryName'],
-        district: data['district'],
-        type: placeType,
-        savePlaceType: placeType != PlaceType.savePlace ? null : savePlaceType);
+      title: data['title'],
+      location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
+          double.tryParse(temp.last.toString()) ?? 0.0),
+      address: data['address'],
+      city: data['city'],
+      countryName: data['countryName'],
+      district: data['district'],
+      type: placeType,
+    );
   }
 
   static Map faryPlaceToMap(FaryPlace faryPlace) {

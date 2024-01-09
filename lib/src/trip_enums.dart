@@ -16,6 +16,4 @@ enum PromotionType { package, discount }
 
 enum SosUserType { user, driver }
 
-enum SavePlaceType { home, work, other }
-
 enum RentPayType { account, credit }
