@@ -98,6 +98,7 @@ class FaryTripDetail {
           name: user['name'].toString(),
           image: user['image'] == null ? null : user['image'].toString(),
           phone: user['phone'].toString(),
+          rating: user['rating'].toString(),
         ),
         driver: FaryProfile(
           id: driver['id'].toString(),
