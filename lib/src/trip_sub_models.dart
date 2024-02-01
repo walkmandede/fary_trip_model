@@ -5,6 +5,7 @@ import 'trip_enums.dart';
 class FaryTripMeta {
   DateTime startDateTime;
   DateTime endDateTime;
+  DateTime? waitingTime;
   String userSocketId;
   String driverSocketId;
   TripState? tripState;
@@ -33,6 +34,7 @@ class FaryTripMeta {
       required this.platformFees,
       required this.commercialTax,
       required this.serviceFees,
+      this.waitingTime,
       this.companyName,
       this.companyImage,
       this.industryTeam,
