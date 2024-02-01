@@ -54,7 +54,7 @@ class FaryTripDetail {
                   DateTime(0),
           endDateTime: DateTime.tryParse(tripMeta['endDateTime'].toString()) ??
               DateTime(0),
-          waitingTime: DateTime.tryParse(tripMeta['waitingTime']),
+          waitingTime: DateTime.tryParse(tripMeta['waitingTime'].toString()),
           pickUpState: TripFunctions.enumParser(
               rawString: tripMeta['pickUpState'], values: PickUpState.values),
           tripState: tripMeta['tripState'] == null
