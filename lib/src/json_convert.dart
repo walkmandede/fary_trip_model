@@ -44,7 +44,8 @@ class FaryConvert {
             discountType: TripFunctions.enumParser(
                 rawString: data['discountType'], values: DiscountType.values),
             promotionType: TripFunctions.enumParser(
-                rawString: data['type'], values: PromotionType.values));
+                rawString: data['type'], values: PromotionType.values),
+            b2bType: data['b2bType'] ?? '');
   }
 
   static Map? faryPromotionToMap(FaryPromotion? faryPromotion) {

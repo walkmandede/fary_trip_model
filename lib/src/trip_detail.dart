@@ -143,8 +143,8 @@ class FaryTripDetail {
                 code: promotion['code'].toString(),
                 value: int.tryParse(promotion['value'].toString()) ?? 0,
                 promotionType: TripFunctions.enumParser(
-                    rawString: promotion['type'],
-                    values: PromotionType.values)),
+                    rawString: promotion['type'], values: PromotionType.values),
+                b2bType: promotion['b2bType'] ?? ''),
         price: FaryPrice(
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
         locationMeta: FaryLocationMeta(
