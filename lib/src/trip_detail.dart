@@ -146,7 +146,9 @@ class FaryTripDetail {
                     rawString: promotion['type'], values: PromotionType.values),
                 b2bType: promotion['b2bType'] ?? ''),
         price: FaryPrice(
-            grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0),
+            grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0,
+            pickUpCharges:
+                int.tryParse(price['pickUpCharges'].toString()) ?? 0),
         locationMeta: FaryLocationMeta(
           routeHistory: TripFunctions.decodeRoute(
               encodedString: locationMeta['routeHistory']),

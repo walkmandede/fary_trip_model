@@ -190,6 +190,7 @@ class FaryPromotion {
 
 class FaryPrice {
   int grossPrice;
+  int pickUpCharges;
 
-  FaryPrice({required this.grossPrice});
+  FaryPrice({required this.grossPrice, required this.pickUpCharges});
 }
