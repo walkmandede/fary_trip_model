@@ -39,7 +39,7 @@ class FaryTripDetail {
     Map driver = tripDetail['driver'];
     Map vehicle = tripDetail['vehicle'];
     Map from = tripDetail['from'];
-    Map to = tripDetail['to'];
+    Iterable to = tripDetail['to'];
     Map locationMeta = tripDetail['locationMeta'];
     Map? promotion = tripDetail['promotion'];
     Map price = tripDetail['price'];
