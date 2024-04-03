@@ -1,3 +1,4 @@
+import 'package:fary_trip_model/fary_trip_model.dart';
 import 'package:fary_trip_model/src/trip_enums.dart';
 import 'package:fary_trip_model/src/trip_functions.dart';
 import 'package:fary_trip_model/src/trip_sub_models.dart';
@@ -10,7 +11,7 @@ class FaryTripDetail {
   FaryProfile driver;
   FaryVehicle vehicle;
   FaryPlace from;
-  FaryPlace to;
+  List<FaryPlace> to;
   FaryLocationMeta locationMeta;
   FaryPromotion? promotion;
   FaryPrice price;
@@ -123,16 +124,20 @@ class FaryTripDetail {
           city: from['city'].toString(),
           district: from['district'].toString(),
         ),
-        to: FaryPlace(
-          title: to['title'].toString(),
-          address: to['address'].toString(),
-          location: TripFunctions.covertStringToLocation(
-                  rawString: to['location'].toString()) ??
-              const LatLng(0, 0),
-          countryName: to['countryName'].toString(),
-          city: to['city'].toString(),
-          district: to['district'].toString(),
-        ),
+        to: (to as Iterable)
+            .map(
+              (e) => FaryPlace(
+                title: e['title'].toString(),
+                address: e['address'].toString(),
+                location: TripFunctions.covertStringToLocation(
+                        rawString: e['location'].toString()) ??
+                    const LatLng(0, 0),
+                countryName: e['countryName'].toString(),
+                city: e['city'].toString(),
+                district: e['district'].toString(),
+              ),
+            )
+            .toList(),
         promotion: promotion == null
             ? null
             : FaryPromotion(
@@ -152,6 +157,8 @@ class FaryTripDetail {
         locationMeta: FaryLocationMeta(
           routeHistory: TripFunctions.decodeRoute(
               encodedString: locationMeta['routeHistory']),
+          nextDropOffIndex: locationMeta['nextDropOffIndex'],
+          totalDropOff: locationMeta['totalDropOff'],
           routeD2F: FaryRoute(
             route: TripFunctions.decodeRoute(
                 encodedString: locationMeta['routeD2F']['route']),
@@ -247,15 +254,7 @@ class FaryTripDetail {
         "city": from.city,
         "district": from.district
       },
-      "to": {
-        "title": to.title,
-        "address": to.address,
-        "location":
-            TripFunctions.convertLocationToString(location: to.location),
-        "countryName": to.countryName,
-        "city": to.city,
-        "district": to.district
-      },
+      "to": to.map((e) => FaryConvert.faryPlaceToMap(e)).toList(),
       "locationMeta": {
         "userPosition": {
           "location": TripFunctions.convertLocationToString(

@@ -137,12 +137,16 @@ class FaryLocationMeta {
   FaryRoute routeD2F;
   FaryRoute routeF2T;
   List<LatLng> routeHistory;
+  int nextDropOffIndex;
+  int totalDropOff;
 
   FaryLocationMeta(
       {required this.userPosition,
       required this.driverPosition,
       required this.routeD2F,
       required this.routeF2T,
+      required this.nextDropOffIndex,
+      required this.totalDropOff,
       this.routeHistory = const []});
 }
 
