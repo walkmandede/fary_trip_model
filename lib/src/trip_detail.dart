@@ -152,7 +152,8 @@ class FaryTripDetail {
                     : TripFunctions.enumParser(
                         rawString: promotion['type'],
                         values: PromotionType.values),
-                b2bType: promotion['b2bType'] ?? ''),
+                b2bType: promotion['b2bType'] ?? '',
+                discountPrice: promotion['discountPrice']),
         price: FaryPrice(
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0,
             pickUpCharges:

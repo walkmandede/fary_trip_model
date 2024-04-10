@@ -172,6 +172,7 @@ class FaryPromotion {
   PromotionType promotionType;
   int value;
   String b2bType;
+  int? discountPrice;
 
   FaryPromotion(
       {required this.id,
@@ -179,6 +180,7 @@ class FaryPromotion {
       required this.code,
       required this.discountType,
       required this.promotionType,
+      this.discountPrice,
       required this.b2bType});
 
   factory FaryPromotion.defaultValue() {
@@ -188,6 +190,7 @@ class FaryPromotion {
         code: '',
         discountType: DiscountType.mmk,
         promotionType: PromotionType.discount,
+        discountPrice: 0,
         b2bType: '');
   }
 }
