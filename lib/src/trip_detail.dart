@@ -141,18 +141,26 @@ class FaryTripDetail {
         promotion: promotion == null
             ? null
             : FaryPromotion(
-                id: promotion['id'].toString(),
-                discountType: TripFunctions.enumParser(
-                    rawString: promotion['discountType'],
-                    values: DiscountType.values),
-                code: promotion['code'].toString(),
-                value: int.tryParse(promotion['value'].toString()) ?? 0,
+                id: promotion['id'] == null ? '' : promotion['id'].toString(),
+                discountType: promotion['discountType'] == null
+                    ? DiscountType.mmk
+                    : TripFunctions.enumParser(
+                        rawString: promotion['discountType'],
+                        values: DiscountType.values),
+                code: promotion['code'] == null
+                    ? ''
+                    : promotion['code'].toString(),
+                value: promotion['value'] == null
+                    ? 0
+                    : int.tryParse(promotion['value'].toString()) ?? 0,
                 promotionType: promotion['type'] == null
                     ? PromotionType.discount
                     : TripFunctions.enumParser(
                         rawString: promotion['type'],
                         values: PromotionType.values),
-                b2bType: promotion['b2bType'] ?? '',
+                b2bType: promotion['b2bType'] == null
+                    ? ''
+                    : promotion['b2bType'] ?? '',
                 discountPrice: promotion['discountPrice']),
         price: FaryPrice(
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0,
