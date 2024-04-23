@@ -20,6 +20,8 @@ class FaryTripMeta {
   String? companyImage;
   String? industryTeam;
   bool? xPackage;
+  bool xUseFaryPay;
+  int? faryPayAmount;
 
   FaryTripMeta(
       {required this.startDateTime,
@@ -38,7 +40,9 @@ class FaryTripMeta {
       this.companyName,
       this.companyImage,
       this.industryTeam,
-      this.xPackage});
+      this.xPackage,
+      required this.xUseFaryPay,
+      this.faryPayAmount});
 }
 
 class TripPayment {

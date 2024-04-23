@@ -64,6 +64,8 @@ class FaryTripDetail {
                   rawString: tripMeta['tripState'], values: TripState.values),
           rentType: TripFunctions.enumParser(
               rawString: tripMeta['rentType'], values: RentType.values),
+          xUseFaryPay: tripMeta['isFaryPay'],
+          faryPayAmount: tripMeta['faryPayAmount'],
           payment: tripMeta['payment'] == null
               ? null
               : TripPayment(
