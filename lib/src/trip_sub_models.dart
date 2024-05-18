@@ -97,6 +97,7 @@ class FaryVehicle {
 }
 
 class FaryPlace {
+  String id;
   String title;
   String address;
   LatLng location;
@@ -106,6 +107,7 @@ class FaryPlace {
   PlaceType? type;
 
   FaryPlace({
+    this.id = '',
     required this.title,
     required this.location,
     required this.address,
@@ -117,6 +119,7 @@ class FaryPlace {
 
   factory FaryPlace.dafaultValue({PlaceType placeType = PlaceType.search}) {
     return FaryPlace(
+      id: '',
       title: '',
       location: const LatLng(0, 0),
       address: '',

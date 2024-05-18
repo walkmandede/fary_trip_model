@@ -39,7 +39,7 @@ class FaryTripDetail {
     Map driver = tripDetail['driver'];
     Map vehicle = tripDetail['vehicle'];
     Map from = tripDetail['from'];
-    Iterable to = tripDetail['to'];
+    Iterable to = (tripDetail['to'] as Iterable);
     Map locationMeta = tripDetail['locationMeta'];
     Map? promotion = tripDetail['promotion'];
     Map price = tripDetail['price'];
@@ -117,6 +117,7 @@ class FaryTripDetail {
           carColor: vehicle['carColor'].toString(),
         ),
         from: FaryPlace(
+          id: from['id'] ?? '',
           title: from['title'].toString(),
           address: from['address'].toString(),
           location: TripFunctions.covertStringToLocation(
@@ -126,9 +127,10 @@ class FaryTripDetail {
           city: from['city'].toString(),
           district: from['district'].toString(),
         ),
-        to: (to as Iterable)
+        to: (to)
             .map(
               (e) => FaryPlace(
+                id: e['id'] ?? '',
                 title: e['title'].toString(),
                 address: e['address'].toString(),
                 location: TripFunctions.covertStringToLocation(
