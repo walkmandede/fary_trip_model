@@ -50,6 +50,7 @@ class FaryTripDetail {
         tripMeta: FaryTripMeta(
           userSocketId: '',
           driverSocketId: '',
+          faryDiscount: int.tryParse(tripMeta['faryDiscount'].toString()),
           startDateTime:
               DateTime.tryParse(tripMeta['startDateTime'].toString()) ??
                   DateTime(0),
