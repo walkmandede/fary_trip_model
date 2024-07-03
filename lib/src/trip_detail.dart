@@ -179,7 +179,8 @@ class FaryTripDetail {
               int.tryParse(tripDetail['maxKiloPrice'].toString()) ?? 0,
           minKiloPrice:
               int.tryParse(tripDetail['minKiloPrice'].toString()) ?? 0,
-          currentKilo: int.tryParse(tripDetail['currentKilo'].toString()) ?? 0,
+          currentKilo:
+              double.tryParse(tripDetail['currentKilo'].toString()) ?? 0,
           currentKiloPrice:
               int.tryParse(tripDetail['currentKiloPrice'].toString()) ?? 0,
         ),

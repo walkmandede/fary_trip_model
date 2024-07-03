@@ -62,7 +62,7 @@ class KiloInformation {
   String carType;
   int maxKiloPrice;
   int minKiloPrice;
-  int currentKilo;
+  double currentKilo;
   int currentKiloPrice;
 
   KiloInformation(
