@@ -175,10 +175,13 @@ class FaryTripDetail {
                 int.tryParse(price['pickUpCharges'].toString()) ?? 0),
         kiloInformation: KiloInformation(
           carType: tripDetail['carType'],
-          maxKiloPrice: int.tryParse(tripDetail['maxKiloPrice']) ?? 0,
-          minKiloPrice: int.tryParse(tripDetail['minKiloPrice']) ?? 0,
-          currentKilo: int.tryParse(tripDetail['currentKilo']) ?? 0,
-          currentKiloPrice: int.tryParse(tripDetail['currentKiloPrice']) ?? 0,
+          maxKiloPrice:
+              int.tryParse(tripDetail['maxKiloPrice'].toString()) ?? 0,
+          minKiloPrice:
+              int.tryParse(tripDetail['minKiloPrice'].toString()) ?? 0,
+          currentKilo: int.tryParse(tripDetail['currentKilo'].toString()) ?? 0,
+          currentKiloPrice:
+              int.tryParse(tripDetail['currentKiloPrice'].toString()) ?? 0,
         ),
         locationMeta: FaryLocationMeta(
           routeHistory: TripFunctions.decodeRoute(
