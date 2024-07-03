@@ -58,6 +58,21 @@ class TripPayment {
   }
 }
 
+class KiloInformation {
+  String carType;
+  int maxKiloPrice;
+  int minKiloPrice;
+  int currentKilo;
+  int currentKiloPrice;
+
+  KiloInformation(
+      {required this.carType,
+      required this.maxKiloPrice,
+      required this.minKiloPrice,
+      required this.currentKilo,
+      required this.currentKiloPrice});
+}
+
 class PaymentInfo {
   String id;
   String paymentMethod;

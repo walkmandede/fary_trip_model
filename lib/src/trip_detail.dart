@@ -15,6 +15,7 @@ class FaryTripDetail {
   FaryLocationMeta locationMeta;
   FaryPromotion? promotion;
   FaryPrice price;
+  KiloInformation kiloInformation;
   bool xDriverSos;
   bool xUserSos;
 
@@ -29,6 +30,7 @@ class FaryTripDetail {
       required this.locationMeta,
       this.promotion,
       required this.price,
+      required this.kiloInformation,
       required this.xDriverSos,
       required this.xUserSos});
 
@@ -171,6 +173,12 @@ class FaryTripDetail {
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0,
             pickUpCharges:
                 int.tryParse(price['pickUpCharges'].toString()) ?? 0),
+        kiloInformation: KiloInformation(
+            carType: tripDetail['carType'],
+            maxKiloPrice: tripDetail['maxKiloPrice'],
+            minKiloPrice: tripDetail['minKiloPrice'],
+            currentKilo: tripDetail['currentKilo'],
+            currentKiloPrice: tripDetail['currentKiloPrice']),
         locationMeta: FaryLocationMeta(
           routeHistory: TripFunctions.decodeRoute(
               encodedString: locationMeta['routeHistory']),
