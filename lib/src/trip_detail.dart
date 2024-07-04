@@ -18,6 +18,7 @@ class FaryTripDetail {
   KiloInformation kiloInformation;
   bool xDriverSos;
   bool xUserSos;
+  String tripVerificationCode;
 
   FaryTripDetail(
       {required this.id,
@@ -32,6 +33,7 @@ class FaryTripDetail {
       required this.price,
       required this.kiloInformation,
       required this.xDriverSos,
+      required this.tripVerificationCode,
       required this.xUserSos});
 
   factory FaryTripDetail.fromTripJson(
@@ -100,6 +102,7 @@ class FaryTripDetail {
                   rawString: tripMeta['rentPayType'],
                   values: RentPayType.values),
         ),
+        tripVerificationCode: tripDetail["tripVerificationCode"] ?? '',
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),
