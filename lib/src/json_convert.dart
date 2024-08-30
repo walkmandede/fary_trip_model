@@ -11,6 +11,7 @@ class FaryConvert {
     var temp = data['position'].toString().split(',');
 
     return FaryPlace(
+      id: data['id'] ?? "",
       title: data['title'],
       location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
           double.tryParse(temp.last.toString()) ?? 0.0),
