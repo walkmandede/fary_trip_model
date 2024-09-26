@@ -2,7 +2,7 @@ import 'package:fary_trip_model/fary_trip_model.dart';
 import 'package:fary_trip_model/src/trip_enums.dart';
 import 'package:fary_trip_model/src/trip_functions.dart';
 import 'package:fary_trip_model/src/trip_sub_models.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FaryTripDetail {
   String id;
