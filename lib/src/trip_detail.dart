@@ -15,6 +15,7 @@ class FaryTripDetail {
   FaryLocationMeta locationMeta;
   FaryPromotion? promotion;
   FaryPrice price;
+  InsuranceInfo? insuranceInfo;
   KiloInformation kiloInformation;
   bool xDriverSos;
   bool xUserSos;
@@ -30,6 +31,7 @@ class FaryTripDetail {
       required this.to,
       required this.locationMeta,
       this.promotion,
+      this.insuranceInfo,
       required this.price,
       required this.kiloInformation,
       required this.xDriverSos,
@@ -103,6 +105,11 @@ class FaryTripDetail {
                   values: RentPayType.values),
         ),
         tripVerificationCode: tripDetail["tripVerificationCode"] ?? '',
+        insuranceInfo: tripDetail['insuranceInfo'] == null
+            ? null
+            : InsuranceInfo(
+                logo: tripDetail['insuranceInfo']['logo'],
+                xCover: tripDetail['insuranceInfo']['isCover']),
         user: FaryProfile(
           id: user['id'].toString(),
           name: user['name'].toString(),

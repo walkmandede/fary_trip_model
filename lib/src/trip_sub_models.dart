@@ -113,6 +113,13 @@ class FaryVehicle {
   });
 }
 
+class InsuranceInfo {
+  String logo;
+  bool xCover;
+
+  InsuranceInfo({required this.logo, required this.xCover});
+}
+
 class FaryPlace {
   String id;
   String title;
