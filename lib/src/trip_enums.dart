@@ -17,3 +17,5 @@ enum PromotionType { package, discount }
 enum SosUserType { user, driver }
 
 enum RentPayType { account, credit }
+
+enum TripType { normal, schedule }

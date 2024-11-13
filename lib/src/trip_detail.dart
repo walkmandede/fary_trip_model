@@ -20,6 +20,7 @@ class FaryTripDetail {
   bool xDriverSos;
   bool xUserSos;
   String tripVerificationCode;
+  TripType tripType;
 
   FaryTripDetail(
       {required this.id,
@@ -36,7 +37,8 @@ class FaryTripDetail {
       required this.kiloInformation,
       required this.xDriverSos,
       required this.tripVerificationCode,
-      required this.xUserSos});
+      required this.xUserSos,
+      required this.tripType});
 
   factory FaryTripDetail.fromTripJson(
       {required Map<dynamic, dynamic> tripDetail}) {
@@ -53,6 +55,11 @@ class FaryTripDetail {
 
     return FaryTripDetail(
         id: tripDetail['id'].toString(),
+        tripType: TripType.values.firstWhere(
+          (element) =>
+              element.name.toLowerCase() ==
+              (tripDetail['tripType'] ?? 'normal').toString().toLowerCase(),
+        ),
         tripMeta: FaryTripMeta(
           userSocketId: '',
           driverSocketId: '',
