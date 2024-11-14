@@ -18,4 +18,4 @@ enum SosUserType { user, driver }
 
 enum RentPayType { account, credit }
 
-enum TripType { normal, schedule }
+enum TripType { normal, reservation }
