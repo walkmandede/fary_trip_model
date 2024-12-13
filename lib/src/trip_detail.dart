@@ -1,7 +1,4 @@
 import 'package:fary_trip_model/fary_trip_model.dart';
-import 'package:fary_trip_model/src/trip_enums.dart';
-import 'package:fary_trip_model/src/trip_functions.dart';
-import 'package:fary_trip_model/src/trip_sub_models.dart';
 import 'package:latlong2/latlong.dart';
 
 class FaryTripDetail {
@@ -13,7 +10,8 @@ class FaryTripDetail {
   FaryPlace from;
   List<FaryPlace> to;
   FaryLocationMeta locationMeta;
-  FaryPromotion? promotion;
+  FaryPromotion promotionDiscount;
+  FaryPromotion b2bDiscount;
   FaryPrice price;
   InsuranceInfo? insuranceInfo;
   KiloInformation kiloInformation;
@@ -31,7 +29,8 @@ class FaryTripDetail {
       required this.from,
       required this.to,
       required this.locationMeta,
-      this.promotion,
+      required this.promotionDiscount,
+      required this.b2bDiscount,
       this.insuranceInfo,
       required this.price,
       required this.kiloInformation,
@@ -49,7 +48,8 @@ class FaryTripDetail {
     Map from = tripDetail['from'];
     Iterable to = (tripDetail['to'] as Iterable);
     Map locationMeta = tripDetail['locationMeta'];
-    Map? promotion = tripDetail['promotion'];
+    Map? promoDiscount = tripDetail['promotion'];
+    Map? b2bDiscount = tripDetail['b2bPromotion'];
     Map price = tripDetail['price'];
     // Iterable sosRawList = tripDetail['sosMeta'] ?? [];
 
@@ -63,7 +63,17 @@ class FaryTripDetail {
         tripMeta: FaryTripMeta(
           userSocketId: '',
           driverSocketId: '',
-          faryDiscount: int.tryParse(tripMeta['faryDiscount'].toString()),
+          faryDiscount: (tripMeta['faryDiscount'] == null ||
+                  (int.tryParse(tripMeta['faryDiscount']) ?? 0) <= 0)
+              ? FaryPromotion.defaultValue()
+              : FaryPromotion(
+                  id: 'farydiscount',
+                  value: tripMeta['faryDiscountValue'],
+                  code: 'faryDiscount',
+                  discountType: DiscountType.values
+                      .firstWhere(tripMeta['faryDiscountType']),
+                  promotionType: PromotionType.discount,
+                  b2bType: 'faryDiscount'),
           startDateTime:
               DateTime.tryParse(tripMeta['startDateTime'].toString()) ??
                   DateTime(0),
@@ -162,30 +172,34 @@ class FaryTripDetail {
               ),
             )
             .toList(),
-        promotion: promotion == null
-            ? null
+        promotionDiscount: promoDiscount == null
+            ? FaryPromotion.defaultValue()
             : FaryPromotion(
-                id: promotion['id'] == null ? '' : promotion['id'].toString(),
-                discountType: promotion['discountType'] == null
-                    ? DiscountType.mmk
-                    : TripFunctions.enumParser(
-                        rawString: promotion['discountType'],
-                        values: DiscountType.values),
-                code: promotion['code'] == null
-                    ? ''
-                    : promotion['code'].toString(),
-                value: promotion['value'] == null
-                    ? 0
-                    : int.tryParse(promotion['value'].toString()) ?? 0,
-                promotionType: promotion['type'] == null
-                    ? PromotionType.discount
-                    : TripFunctions.enumParser(
-                        rawString: promotion['type'],
-                        values: PromotionType.values),
-                b2bType: promotion['b2bType'] == null
-                    ? ''
-                    : promotion['b2bType'] ?? '',
-                discountPrice: promotion['discountPrice']),
+                id: promoDiscount['id'].toString(),
+                discountType: DiscountType.values.firstWhere(
+                    (element) => element.name == promoDiscount['discountType'],
+                    orElse: () => DiscountType.mmk),
+                code: promoDiscount['code'].toString(),
+                value: int.tryParse(promoDiscount['value'].toString()) ?? 0,
+                promotionType: PromotionType.values.firstWhere(
+                    (element) => element.name == promoDiscount['type'],
+                    orElse: () => PromotionType.discount),
+                b2bType: promoDiscount['b2bType'] ?? '',
+              ),
+        b2bDiscount: b2bDiscount == null
+            ? FaryPromotion.defaultValue()
+            : FaryPromotion(
+                id: b2bDiscount['id'].toString(),
+                discountType: DiscountType.values.firstWhere(
+                    (element) => element.name == b2bDiscount['discountType'],
+                    orElse: () => DiscountType.mmk),
+                code: b2bDiscount['code'].toString(),
+                value: int.tryParse(b2bDiscount['value'].toString()) ?? 0,
+                promotionType: PromotionType.values.firstWhere(
+                    (element) => element.name == b2bDiscount['type'],
+                    orElse: () => PromotionType.discount),
+                b2bType: b2bDiscount['b2bType'] ?? '',
+              ),
         price: FaryPrice(
             grossPrice: int.tryParse(price['grossPrice'].toString()) ?? 0,
             pickUpCharges:
@@ -328,14 +342,12 @@ class FaryTripDetail {
         "routeHistory":
             TripFunctions.encodeRoute(route: locationMeta.routeHistory)
       },
-      "promotion": promotion == null
-          ? null
-          : {
-              "id": promotion!.id,
-              "code": promotion!.code,
-              "type": promotion!.discountType.name,
-              "value": promotion!.value
-            },
+      "promotion": {
+        "id": promotionDiscount.id,
+        "code": promotionDiscount.code,
+        "type": promotionDiscount.discountType.name,
+        "value": promotionDiscount.value
+      },
       "price": {"grossPrice": price.grossPrice},
       'isUserSOS': xUserSos,
       'isDriverSOS': xDriverSos

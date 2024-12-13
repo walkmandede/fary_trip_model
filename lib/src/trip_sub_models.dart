@@ -22,7 +22,7 @@ class FaryTripMeta {
   bool? xPackage;
   bool xUseFaryPay;
   int? faryPayAmount;
-  int? faryDiscount;
+  FaryPromotion faryDiscount;
 
   FaryTripMeta(
       {required this.startDateTime,
@@ -44,7 +44,7 @@ class FaryTripMeta {
       this.xPackage,
       required this.xUseFaryPay,
       this.faryPayAmount,
-      this.faryDiscount});
+      required this.faryDiscount});
 }
 
 class TripPayment {
