@@ -68,10 +68,10 @@ class FaryTripDetail {
               ? FaryPromotion.defaultValue()
               : FaryPromotion(
                   id: 'farydiscount',
-                  value: tripMeta['faryDiscountValue'],
+                  value: tripMeta['faryDiscountValue'] ?? 0,
                   code: 'faryDiscount',
                   discountType: DiscountType.values
-                      .firstWhere(tripMeta['faryDiscountType']),
+                      .firstWhere(tripMeta['faryDiscountType'] ?? 0),
                   promotionType: PromotionType.discount,
                   b2bType: 'faryDiscount'),
           startDateTime:
