@@ -64,7 +64,7 @@ class FaryTripDetail {
           userSocketId: '',
           driverSocketId: '',
           faryDiscount: (tripMeta['faryDiscount'] == null ||
-                  (int.tryParse(tripMeta['faryDiscount']) ?? 0) <= 0)
+                  (int.tryParse(tripMeta['faryDiscount'].toString()) ?? 0) <= 0)
               ? FaryPromotion.defaultValue()
               : FaryPromotion(
                   id: 'farydiscount',
