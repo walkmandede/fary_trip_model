@@ -70,8 +70,9 @@ class FaryTripDetail {
                   id: 'farydiscount',
                   value: tripMeta['faryDiscountValue'] ?? 0,
                   code: 'faryDiscount',
-                  discountType: DiscountType.values
-                      .firstWhere(tripMeta['faryDiscountType'] ?? 0),
+                  discountType: DiscountType.values.firstWhere(
+                    (element) => element.name == tripMeta['faryDiscountType'],
+                  ),
                   promotionType: PromotionType.discount,
                   b2bType: 'faryDiscount'),
           startDateTime:
