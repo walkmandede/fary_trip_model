@@ -71,7 +71,9 @@ class FaryTripDetail {
                   value: tripMeta['faryDiscountValue'] ?? 0,
                   code: 'faryDiscount',
                   discountType: DiscountType.values.firstWhere(
-                      (element) => element.name == tripMeta['faryDiscountType'],
+                      (element) =>
+                          element.name ==
+                          tripMeta['faryDiscountType'].toString().toLowerCase(),
                       orElse: () => DiscountType.mmk),
                   promotionType: PromotionType.discount,
                   b2bType: 'faryDiscount'),
@@ -178,7 +180,9 @@ class FaryTripDetail {
             : FaryPromotion(
                 id: promoDiscount['id'].toString(),
                 discountType: DiscountType.values.firstWhere(
-                    (element) => element.name == promoDiscount['discountType'],
+                    (element) =>
+                        element.name ==
+                        promoDiscount['discountType'].toString().toLowerCase(),
                     orElse: () => DiscountType.mmk),
                 code: promoDiscount['code'].toString(),
                 value: int.tryParse(promoDiscount['value'].toString()) ?? 0,
@@ -192,7 +196,9 @@ class FaryTripDetail {
             : FaryPromotion(
                 id: b2bDiscount['id'].toString(),
                 discountType: DiscountType.values.firstWhere(
-                    (element) => element.name == b2bDiscount['discountType'],
+                    (element) =>
+                        element.name ==
+                        b2bDiscount['discountType'].toString().toLowerCase(),
                     orElse: () => DiscountType.mmk),
                 code: b2bDiscount['code'].toString(),
                 value: int.tryParse(b2bDiscount['value'].toString()) ?? 0,
