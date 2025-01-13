@@ -15,5 +15,10 @@ import io.flutter.embedding.engine.FlutterEngine;
 public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
+    try {
+      flutterEngine.getPlugins().add(new org.maplibre.maplibregl.MapLibreMapsPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin maplibre_gl, org.maplibre.maplibregl.MapLibreMapsPlugin", e);
+    }
   }
 }

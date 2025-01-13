@@ -1,5 +1,5 @@
 import 'package:fary_trip_model/fary_trip_model.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:maplibre_gl/maplibre_gl.dart';
 
 class FaryTripDetail {
   String id;
