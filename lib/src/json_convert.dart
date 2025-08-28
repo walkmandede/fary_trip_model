@@ -15,9 +15,9 @@ class FaryConvert {
       location: LatLng(double.tryParse(temp.first.toString()) ?? 0.0,
           double.tryParse(temp.last.toString()) ?? 0.0),
       address: data['address'],
-      city: data['city'],
-      countryName: data['countryName'],
-      district: data['district'],
+      city: data['city'] ?? '',
+      countryName: data['countryName'] ?? '',
+      district: data['district'] ?? '',
       type: placeType,
     );
   }
